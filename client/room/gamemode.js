@@ -3,12 +3,17 @@ import * as peace from './options.js';
 import * as teams from './default_teams.js';
 
 const TRIGGERS_TAG = "trigger_1";
+const BOTS_SPAWN_TAG = "bots_1";
 //var triggers = room.AreaService.GetByTag(TRIGGERS_TAG);
 var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
+var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
 trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
-trigger.OnEnter.Add(function (player, area, trigger){
-    room.Bots.CreateHuman({WeaponId:2});
+trigger.OnEnter.Add(function (player, area, trigger) {
+    var range = spawns[0].Ranges.All[0];
+    var spawn_data = { WeaponId: 2 };
+    spawn_data.Position = range.Start;
+    room.Bots.CreateHuman(spawn_data);
     trigger.Enable = false;
 });
 
