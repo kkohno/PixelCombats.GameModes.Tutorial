@@ -1,0 +1,26 @@
+{
+    "Name": "TUTORIAL",
+    "Description": "Обучение игре",
+    "StartClientVersion": 579,
+    "ApiVersion": 2,
+    "MapLists": [
+      {
+        "MapListId": 8401,
+        "Name": "Заготовки"
+      }
+    ],
+    "Parameters": {
+      "Bool": [
+        {
+          "Name": "RedTeam",
+          "DisplayName": "Teams/Red",
+          "Default": true
+        },
+        {
+          "Name": "BlueTeam",
+          "DisplayName": "Teams/Blue",
+          "Default": true
+        }
+      ]
+    }
+  }
