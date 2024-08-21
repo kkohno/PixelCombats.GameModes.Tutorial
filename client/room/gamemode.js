@@ -9,11 +9,11 @@ const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
 
 // зоны спавна
-var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
 var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
+    var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
     var range = spawns[0].Ranges.All[0];
     var spawn_data = { WeaponId: 2 };
     spawn_data.Position = new basic.Vector3(range.Start.x, range.Start.y, range.Start.z);
