@@ -25,7 +25,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
         var spawn_data = { WeaponId: 2 };
         for (var x = range.Start.x; x < range.End.x; x+=2)
             for (var z = range.Start.z; z < range.End.z; z+=2) {
-                spawn_data.Position = new basic.Vector3(x, y, range.Start.z);
+                spawn_data.Position = new basic.Vector3(x, range.Start.y, z);
                 room.Bots.CreateHuman(spawn_data);
             }
     }
