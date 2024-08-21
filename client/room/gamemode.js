@@ -20,13 +20,15 @@ trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
     var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
-    var range = spawns[0].Ranges.All[0];
-    var spawn_data = { WeaponId: 2 };
-    for (var x = range.Start.x; x < range.End.x; x += 2)
-        for (var z = range.Start.z; z < range.End.z; z += 2) {
-            spawn_data.Position = new basic.Vector3(range.Start.x, range.Start.y, range.Start.z);
-            room.Bots.CreateHuman(spawn_data);
-        }
+    for (var i = 0; i < spawns.length; ++i) {
+        var range = spawns[i].Ranges.All[0];
+        var spawn_data = { WeaponId: 2 };
+        for (var x = range.Start.x; x < range.End.x; x += 2)
+            for (var z = range.Start.z; z < range.End.z; z += 2) {
+                spawn_data.Position = new basic.Vector3(range.Start.x, range.Start.y, range.Start.z);
+                room.Bots.CreateHuman(spawn_data);
+            }
+    }
     trigger.Enable = false;
     trigger_view.Enable = false;
 });
