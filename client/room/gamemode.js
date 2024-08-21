@@ -4,21 +4,27 @@ import * as teams from './default_teams.js';
 const { log } = await import('pixel_combats/debug');
 import * as basic from 'pixel_combats/basic';
 
+// опции
 const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
-//var triggers = room.AreaService.GetByTag(TRIGGERS_TAG);
+
+// зоны спавна
+var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
 var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
-    var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
-    log.Debug(spawns[0].Ranges);
     var range = spawns[0].Ranges.All[0];
     var spawn_data = { WeaponId: 2 };
     spawn_data.Position = new basic.Vector3(range.Start.x, range.Start.y, range.Start.z);
     room.Bots.CreateHuman(spawn_data);
     trigger.Enable = false;
 });
+// визуализация триггера
+var trigger_view = AreaViewService.GetContext().Get("trigger_view");
+trigger_view.color = new basic.Color(1, 1, 0);
+trigger_view.Tags = [TRIGGERS_TAG];
+trigger_view.Enable = true;
 
 // разрешения
 room.Damage.FriendlyFire = false;
