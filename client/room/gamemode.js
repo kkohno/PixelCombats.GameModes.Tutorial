@@ -1,6 +1,7 @@
 import * as room from 'pixel_combats/room';
 import * as peace from './options.js';
 import * as teams from './default_teams.js';
+const { log } = await import('pixel_combats/debug');
 
 const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
@@ -10,7 +11,7 @@ var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
 trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
-    console.log(spawns);
+    log.Debug(spawns);
     var range = spawns[0].Ranges.All[0];
     var spawn_data = { WeaponId: 2 };
     spawn_data.Position = range.Start;
