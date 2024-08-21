@@ -2,6 +2,7 @@ import * as room from 'pixel_combats/room';
 import * as peace from './options.js';
 import * as teams from './default_teams.js';
 const { log } = await import('pixel_combats/debug');
+import * as basic from 'pixel_combats/basic';
 
 const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
@@ -14,7 +15,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
     log.Debug(spawns[0].Ranges);
     var range = spawns[0].Ranges.All[0];
     var spawn_data = { WeaponId: 2 };
-    spawn_data.Position = range.Start;
+    spawn_data.Position = new basic.Vector3(range.Start.x, range.Start.y, range.Start.z);
     room.Bots.CreateHuman(spawn_data);
     trigger.Enable = false;
 });
