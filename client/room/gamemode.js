@@ -21,7 +21,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
     trigger.Enable = false;
 });
 // визуализация триггера
-var trigger_view = AreaViewService.GetContext().Get("trigger_view");
+var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
 trigger_view.color = new basic.Color(1, 1, 0);
 trigger_view.Tags = [TRIGGERS_TAG];
 trigger_view.Enable = true;
