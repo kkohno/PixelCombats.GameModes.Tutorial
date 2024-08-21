@@ -11,7 +11,7 @@ trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
     var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
-    log.Debug(spawns);
+    log.Debug(spawns[0]);
     var range = spawns[0].Ranges.All[0];
     var spawn_data = { WeaponId: 2 };
     spawn_data.Position = range.Start;
