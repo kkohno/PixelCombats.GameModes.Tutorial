@@ -8,6 +8,12 @@ import * as basic from 'pixel_combats/basic';
 const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
 
+// визуализация триггера
+var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
+trigger_view.color = new basic.Color(1, 1, 0, 0);
+trigger_view.Tags = [TRIGGERS_TAG];
+trigger_view.Enable = true;
+
 // зоны спавна
 var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 trigger.Tags = [TRIGGERS_TAG];
@@ -19,12 +25,8 @@ trigger.OnEnter.Add(function (player, area, trigger) {
     spawn_data.Position = new basic.Vector3(range.Start.x, range.Start.y, range.Start.z);
     room.Bots.CreateHuman(spawn_data);
     trigger.Enable = false;
+    trigger_view.Enable = false;
 });
-// визуализация триггера
-var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
-trigger_view.color = new basic.Color(1, 1, 0, 0);
-trigger_view.Tags = [TRIGGERS_TAG];
-trigger_view.Enable = true;
 
 // разрешения
 room.Damage.FriendlyFire = false;
