@@ -47,7 +47,7 @@ room.Bots.OnNewBot.Add(function (bot) {
     bot.Attack = true;
 });
 room.Bots.OnBotDeath.Add(function (bot) {
-    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Players.All.length;
+    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.All.length;
 });
 
 var bots_timer = room.Timers.GetContext().Get("bots_timer");
