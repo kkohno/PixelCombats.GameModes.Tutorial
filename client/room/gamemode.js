@@ -7,6 +7,7 @@ import * as basic from 'pixel_combats/basic';
 // опции
 const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
+const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 
 // визуализация триггера
 var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
@@ -27,9 +28,9 @@ trigger.OnEnter.Add(function (player, area, trigger) {
         for (var x = range.Start.x; x < range.End.x; x += 2)
             for (var z = range.Start.z; z < range.End.z; z += 2) {
                 spawn_data.WeaponId = weapon++ % 20;
-                spawn_data.Position = new basic.Vector3(x, range.Start.y, z);
+                spawn_data.Position = new basic.Vector3(x + 0.5, range.Start.y, z + 0.5);
                 spawn_data.LookAt = player.Position;
-                spawn_data.LookAt.y += 2.35;
+                spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
                 room.Bots.CreateHuman(spawn_data);
                 //var bot = room.Bots.CreateHuman(spawn_data);
                 //bot.Attack = true;
