@@ -40,6 +40,21 @@ trigger.OnEnter.Add(function (player, area, trigger) {
     trigger_view.Enable = false;
 });
 
+room.Bots.OnNewBot.Add(function (bot) {
+    bot.Attack = true;
+});
+
+var bots_timer = room.Timers.Get("bots_timer");
+bots_timer.OnTimer(function () {
+    var player = room.Players.All[0];
+    var look = player.Position;
+    look.y += PLAYER_HEAD_HEIGHT;
+    for (const bot of room.Bots.All) {
+        bot.LookAt(look);
+    }
+});
+bots_timer.RestartLoop(1);
+
 // разрешения
 room.Damage.FriendlyFire = false;
 room.BreackGraph.OnlyPlayerBlocksDmg = false;
