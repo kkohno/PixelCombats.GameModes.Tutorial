@@ -22,6 +22,7 @@ trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
     var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
     var weapon = 1;
+    var count = 0;
     for (var i = 0; i < spawns.length; ++i) {
         var range = spawns[i].Ranges.All[0];
         var spawn_data = { WeaponId: weapon };
@@ -32,16 +33,21 @@ trigger.OnEnter.Add(function (player, area, trigger) {
                 spawn_data.LookAt = player.Position;
                 spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
                 room.Bots.CreateHuman(spawn_data);
+                ++count;
                 //var bot = room.Bots.CreateHuman(spawn_data);
                 //bot.Attack = true;
             }
     }
     trigger.Enable = false;
     trigger_view.Enable = false;
+    room.Ui.GetContext().Hint.Value = "Bots count: " + count;
 });
 
 room.Bots.OnNewBot.Add(function (bot) {
     bot.Attack = true;
+});
+room.Bots.OnBotDeath.Add(function (bot) {
+    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Players.All.length;
 });
 
 var bots_timer = room.Timers.GetContext().Get("bots_timer");
