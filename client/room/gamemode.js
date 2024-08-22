@@ -44,7 +44,7 @@ room.Bots.OnNewBot.Add(function (bot) {
     bot.Attack = true;
 });
 
-var bots_timer = room.Timers.Get("bots_timer");
+var bots_timer = room.Timers.GetContext().Get("bots_timer");
 bots_timer.OnTimer(function () {
     var player = room.Players.All[0];
     var look = player.Position;
