@@ -1,12 +1,15 @@
 import { Build, Inventory } from 'pixel_combats/room';
 
 // разрешаем все что можно для редактора
-export function set_editor_inventory() {
+export function set_inventory() {
     var roomInventory = Inventory.GetContext();
-    roomInventory.Main.Value = false;
-    roomInventory.Secondary.Value = false;
+    roomInventory.Main.Value = true;
+    roomInventory.MainInfinity.Value = true;
+    roomInventory.Secondary.Value = true;
+    roomInventory.SecondaryInfinity.Value = true;
     roomInventory.Melee.Value = true;
-    roomInventory.Explosive.Value = false;
+    roomInventory.Explosive.Value = true;
+    roomInventory.ExplosiveInfinity.Value = true;
     roomInventory.Build.Value = true;
     roomInventory.BuildInfinity.Value = true;
 }
