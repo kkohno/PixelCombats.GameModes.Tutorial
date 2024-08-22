@@ -58,6 +58,7 @@ bots_timer.OnTimer.Add(function () {
     for (const bot of room.Bots.All) {
         bot.LookAt(look);
     }
+    room.Ui.GetContext().Hint.Value = "Bots count: " + count;
 });
 bots_timer.RestartLoop(1);
 
