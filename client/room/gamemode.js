@@ -45,7 +45,7 @@ room.Bots.OnNewBot.Add(function (bot) {
 });
 
 var bots_timer = room.Timers.GetContext().Get("bots_timer");
-bots_timer.OnTimer(function () {
+bots_timer.OnTimer.Add(function () {
     var player = room.Players.All[0];
     var look = player.Position;
     look.y += PLAYER_HEAD_HEIGHT;
