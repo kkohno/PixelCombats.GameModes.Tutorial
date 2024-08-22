@@ -94,7 +94,7 @@ room.Teams.OnPlayerChangeTeam.add_Event(function (player) { player.Spawns.Spawn(
 room.Ui.getContext().Hint.Value = "Hint/BuildBase";
 
 // конфигурация инвентаря
-peace.set_editor_inventory();
+peace.set_inventory();
 
 // моментальный спавн
 room.Spawns.GetContext().RespawnTime.Value = 0;
