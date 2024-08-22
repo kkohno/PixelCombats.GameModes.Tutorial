@@ -29,7 +29,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
                 spawn_data.WeaponId = weapon++ % 20;
                 spawn_data.Position = new basic.Vector3(x, range.Start.y, z);
                 spawn_data.LookAt = player.Position;
-                spawn_data.LookAt.y += 1.5;
+                spawn_data.LookAt.y += 1.75;
                 room.Bots.CreateHuman(spawn_data);
                 //var bot = room.Bots.CreateHuman(spawn_data);
                 //bot.Attack = true;
