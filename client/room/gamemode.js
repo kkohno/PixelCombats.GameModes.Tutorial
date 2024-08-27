@@ -9,6 +9,8 @@ const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
 const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 
+room.Ui.GetContext().Hint.Value = "1";
+
 // визуализация триггера
 var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
 trigger_view.color = new basic.Color(1, 1, 0, 0);
