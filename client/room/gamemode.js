@@ -8,6 +8,10 @@ import * as basic from 'pixel_combats/basic';
 const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
 const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
+const BOTS_POOL_SIZE = 30; // размер пула ботов
+
+// задаем размер пула ботов
+room.Bots = BOTS_POOL_SIZE;
 
 // визуализация триггера
 var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
