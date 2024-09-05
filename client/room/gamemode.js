@@ -11,7 +11,7 @@ const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы �
 const BOTS_POOL_SIZE = 30; // размер пула ботов
 
 // задаем размер пула ботов
-room.Bots = BOTS_POOL_SIZE;
+room.Bots.PoolSize = BOTS_POOL_SIZE;
 
 // визуализация триггера
 var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
