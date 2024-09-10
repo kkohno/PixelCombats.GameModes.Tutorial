@@ -8,7 +8,7 @@ import * as basic from 'pixel_combats/basic';
 const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
 const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
-const BOTS_POOL_SIZE = 10; // размер пула ботов
+const BOTS_POOL_SIZE = 250; // размер пула ботов
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
