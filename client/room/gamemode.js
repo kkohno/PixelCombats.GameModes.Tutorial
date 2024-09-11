@@ -32,14 +32,15 @@ trigger.OnEnter.Add(function (player, area, trigger) {
         var spawn_data = { WeaponId: weapon };
         for (var x = range.Start.x; x < range.End.x; x += 2)
             for (var z = range.Start.z; z < range.End.z; z += 2) {
-                spawn_data.WeaponId = weapon++ % 20;
+                //spawn_data.WeaponId = weapon++ % 20;
                 spawn_data.Position = new basic.Vector3(x + 0.5, range.Start.y, z + 0.5);
                 spawn_data.LookAt = player.Position;
                 spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
-                var bot=room.Bots.CreateHuman(spawn_data);
+                var bot = room.Bots.CreateHuman(spawn_data);
                 ++count;
                 //var bot = room.Bots.CreateHuman(spawn_data);
                 bot.Attack = true;
+                bot.WeaponId = weapon++ % 20;
             }
     }
     trigger.Enable = false;
