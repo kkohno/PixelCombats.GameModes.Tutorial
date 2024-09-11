@@ -36,10 +36,10 @@ trigger.OnEnter.Add(function (player, area, trigger) {
                 spawn_data.Position = new basic.Vector3(x + 0.5, range.Start.y, z + 0.5);
                 spawn_data.LookAt = player.Position;
                 spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
-                room.Bots.CreateHuman(spawn_data);
+                var bot=room.Bots.CreateHuman(spawn_data);
                 ++count;
                 //var bot = room.Bots.CreateHuman(spawn_data);
-                //bot.Attack = true;
+                bot.Attack = true;
             }
     }
     trigger.Enable = false;
