@@ -1,4 +1,5 @@
 import * as room from 'pixel_combats/room';
+import * as basic from 'pixel_combats/basic';
 
 // получает все зоны с указанным тэгом, сортировано по имени
 export function get_areas_by_tag_sorted_by_name(tag) {
