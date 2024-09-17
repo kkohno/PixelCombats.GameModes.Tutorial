@@ -37,9 +37,8 @@ trigger.OnEnter.Add(function (player, area, trigger) {
                 spawn_data.Position = new basic.Vector3(x + 0.5, range.Start.y, z + 0.5);
                 spawn_data.LookAt = player.Position;
                 spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
-                var bot = room.Bots.CreateHuman(spawn_data);
+                const bot = room.Bots.CreateHuman(spawn_data);
                 if (bot !== null) { // если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
-                    //var bot = room.Bots.CreateHuman(spawn_data);
                     bot.Attack = NEW_BOT_IS_ATTACK; // первый способ настройки ботов - сразу по дескриптору нового бота (смотреть чтобы дескриптор небыл null)
                     bot.WeaponId = weapon++ % 20;
                 }
