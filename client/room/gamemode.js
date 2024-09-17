@@ -36,8 +36,10 @@ var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
-    for (const spawns in room.AreaService.GetByTag(BOTS_SPAWN_TAG))
-        library.spawn_bots_in_area_all_ranges(spawns);
+    for (const spawn in room.AreaService.GetByTag(BOTS_SPAWN_TAG)) {
+        log.debug("spawn=" + spawn);
+        library.spawn_bots_in_area_all_ranges(spawn);
+    }
     /*var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
     var weapon = 1;
     var count = 0;
