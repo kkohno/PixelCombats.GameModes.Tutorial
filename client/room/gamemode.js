@@ -39,7 +39,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
                 var bot = room.Bots.CreateHuman(spawn_data);
                 ++count;
                 //var bot = room.Bots.CreateHuman(spawn_data);
-                bot.Attack = true;
+                bot.Attack = false;
                 bot.WeaponId = weapon++ % 20;
             }
     }
