@@ -3,13 +3,24 @@ import * as peace from './options.js';
 import * as teams from './default_teams.js';
 const { log } = await import('pixel_combats/debug');
 import * as basic from 'pixel_combats/basic';
+import * as library from 'pixel_combats/basic';
 
 // опции
-const TRIGGERS_TAG = "trigger_1";
-const BOTS_SPAWN_TAG = "bots_1";
+const TRIGGERS_TAG = "trigger";
+const BOTS_SPAWN_TAG = "bots";
+const BOTS_MULTI_SPAWN_TAG = "multi";
 const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
-const BOTS_POOL_SIZE = 250; // размер пула ботов
+const BOTS_POOL_SIZE = 10; // размер пула ботов
 const NEW_BOT_IS_ATTACK = false; // если истина то новые боты атакуют
+
+// инициализация всего что зависит от карты
+var triggers = library.get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
+var bots_spawns = library.get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
+room.Map.OnLoad.Add(InitializeFromMap);
+function InitializeFromMap() {
+    triggers = library.get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
+    bots_spawns = library.get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
+}
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
