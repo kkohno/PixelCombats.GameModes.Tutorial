@@ -62,7 +62,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
     }*/
     trigger.Enable = false;
     trigger_view.Enable = false;
-    room.Ui.GetContext().Hint.Value = "Bots count: " + count;
+    //room.Ui.GetContext().Hint.Value = "Bots count: " + count;
 });
 
 room.Bots.OnNewBot.Add(function (bot) {
