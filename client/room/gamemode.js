@@ -49,7 +49,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
 });
 
 room.Bots.OnNewBot.Add(function (bot) {
-    bot.Attack = true;
+    bot.Attack = false;
 });
 room.Bots.OnBotDeath.Add(function (bot) {
     room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
