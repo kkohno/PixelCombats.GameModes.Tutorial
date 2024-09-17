@@ -20,6 +20,7 @@ export function get_areas_by_tag_sorted_by_name(tag) {
 
 export function spawn_bots_in_area_range(range) {
     var bots = [];
+    var player = room.Players.All[0];
     for (var x = range.Start.x; x < range.End.x; x += 2)
         for (var z = range.Start.z; z < range.End.z; z += 2) {
             const spawn_data = {
