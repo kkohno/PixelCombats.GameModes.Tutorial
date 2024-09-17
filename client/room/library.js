@@ -1,6 +1,5 @@
 import * as room from 'pixel_combats/room';
 import * as basic from 'pixel_combats/basic';
-const { log } = await import('pixel_combats/debug');
 
 const NEW_BOT_IS_ATTACK = true; // если истина то новые боты атакуют
 export const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
