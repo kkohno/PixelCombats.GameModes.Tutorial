@@ -38,7 +38,8 @@ export function spawn_bots_in_area_range(range) {
 export function spawn_bots_in_area_all_ranges(area) {
     var bots = [];
     for (const range of area.Ranges.All) {
-        bots.push(spawn_bots_in_area_range(range));
+        for (const bot of spawn_bots_in_area_range(range))
+            bots.push(bot);
     }
     return bots;
 }
