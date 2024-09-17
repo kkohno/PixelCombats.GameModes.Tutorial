@@ -11,7 +11,6 @@ const BOTS_SPAWN_TAG = "bots";
 const BOTS_MULTI_SPAWN_TAG = "multi";
 const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 const BOTS_POOL_SIZE = 10; // размер пула ботов
-const NEW_BOT_IS_ATTACK = false; // если истина то новые боты атакуют
 
 // инициализация всего что зависит от карты
 var triggers = library.get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
@@ -37,8 +36,9 @@ trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
     for (const spawn of room.AreaService.GetByTag(BOTS_SPAWN_TAG)) {
-        log.debug("spawn=" + spawn);
-        library.spawn_bots_in_area_all_ranges(spawn);
+        for (const bot of library.spawn_bots_in_area_all_ranges(spawn)) {
+            configure_bot(bot);
+        }
     }
     /*var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
     var weapon = 1;
@@ -67,7 +67,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
 });
 
 room.Bots.OnNewBot.Add(function (bot) {
-    bot.Attack = NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
+    //bot.Attack = NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
 });
 room.Bots.OnBotDeath.Add(function (bot) {
     room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
