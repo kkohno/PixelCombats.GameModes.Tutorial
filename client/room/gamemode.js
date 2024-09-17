@@ -66,7 +66,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
 });
 
 room.Bots.OnNewBot.Add(function (bot) {
-    //bot.Attack = NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
+    //bot.Attack = library.NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
 });
 room.Bots.OnBotDeath.Add(function (bot) {
     room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
