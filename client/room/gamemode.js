@@ -9,6 +9,7 @@ const TRIGGERS_TAG = "trigger_1";
 const BOTS_SPAWN_TAG = "bots_1";
 const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 const BOTS_POOL_SIZE = 250; // размер пула ботов
+const NEW_BOT_IS_ATTACK = false; // если истина то новые боты атакуют
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
@@ -37,10 +38,13 @@ trigger.OnEnter.Add(function (player, area, trigger) {
                 spawn_data.LookAt = player.Position;
                 spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
                 var bot = room.Bots.CreateHuman(spawn_data);
+                if (bot !== null) { // если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
+                    //var bot = room.Bots.CreateHuman(spawn_data);
+                    bot.Attack = NEW_BOT_IS_ATTACK; // первый способ настройки ботов - сразу по дескриптору нового бота (смотреть чтобы дескриптор небыл null)
+                    bot.WeaponId = weapon++ % 20;
+                }
+
                 ++count;
-                //var bot = room.Bots.CreateHuman(spawn_data);
-                bot.Attack = false;
-                bot.WeaponId = weapon++ % 20;
             }
     }
     trigger.Enable = false;
@@ -49,7 +53,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
 });
 
 room.Bots.OnNewBot.Add(function (bot) {
-    bot.Attack = false;
+    bot.Attack = NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
 });
 room.Bots.OnBotDeath.Add(function (bot) {
     room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
