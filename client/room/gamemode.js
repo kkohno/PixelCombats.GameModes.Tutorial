@@ -9,7 +9,6 @@ import * as library from './library.js';
 const TRIGGERS_TAG = "trigger";
 const BOTS_SPAWN_TAG = "bots";
 const BOTS_MULTI_SPAWN_TAG = "multi";
-const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 const BOTS_POOL_SIZE = 10; // размер пула ботов
 
 // инициализация всего что зависит от карты
@@ -77,7 +76,7 @@ var bots_timer = room.Timers.GetContext().Get("bots_timer");
 bots_timer.OnTimer.Add(function () {
     var player = room.Players.All[0];
     var look = player.Position;
-    look.y += PLAYER_HEAD_HEIGHT;
+    look.y += library.PLAYER_HEAD_HEIGHT;
     for (const bot of room.Bots.All) {
         bot.LookAt(look);
     }
