@@ -22,10 +22,11 @@ export function spawn_bots_in_area_range(range) {
     var bots = [];
     for (var x = range.Start.x; x < range.End.x; x += 2)
         for (var z = range.Start.z; z < range.End.z; z += 2) {
-            spawn_data.Position = new basic.Vector3(x + 0.5, range.Start.y, z + 0.5);
-            spawn_data.LookAt = player.Position;
+            const spawn_data = {
+                Position: new basic.Vector3(x + 0.5, range.Start.y, z + 0.5),
+                LookAt: player.Position
+            };
             spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
-            const spawn_data = {};
             const bot = room.Bots.CreateHuman(spawn_data);
             if (bot !== null) bots.push(bot);// если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
         }
