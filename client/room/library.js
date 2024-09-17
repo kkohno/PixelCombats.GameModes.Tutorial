@@ -2,6 +2,7 @@ import * as room from 'pixel_combats/room';
 import * as basic from 'pixel_combats/basic';
 
 const NEW_BOT_IS_ATTACK = false; // если истина то новые боты атакуют
+export const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 var bots_configured = 0;
 
 // получает все зоны с указанным тэгом, сортировано по имени
