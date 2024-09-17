@@ -36,7 +36,7 @@ trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
     for (const spawn of room.AreaService.GetByTag(BOTS_SPAWN_TAG)) {
         for (const bot of library.spawn_bots_in_area_all_ranges(spawn)) {
-            configure_bot(bot);
+            library.configure_bot(bot);
         }
     }
     /*var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
