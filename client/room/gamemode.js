@@ -3,7 +3,7 @@ import * as peace from './options.js';
 import * as teams from './default_teams.js';
 const { log } = await import('pixel_combats/debug');
 import * as basic from 'pixel_combats/basic';
-import * as library from 'pixel_combats/basic';
+import * as library from './library.js';
 
 // опции
 const TRIGGERS_TAG = "trigger";
