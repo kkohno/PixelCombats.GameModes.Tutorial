@@ -32,25 +32,6 @@ trigger.OnEnter.Add(function (player, area, trigger) {
     trigger_view.Enable = false;
 });*/
 
-room.Bots.OnNewBot.Add(function (bot) {
-    //bot.Attack = library.NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
-});
-room.Bots.OnBotDeath.Add(function (bot) {
-    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
-});
-
-var bots_timer = room.Timers.GetContext().Get("bots_timer");
-bots_timer.OnTimer.Add(function () {
-    var player = room.Players.All[0];
-    var look = player.Position;
-    look.y += library.PLAYER_HEAD_HEIGHT;
-    for (const bot of room.Bots.All) {
-        bot.LookAt(look);
-    }
-    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
-});
-bots_timer.RestartLoop(1);
-
 // разрешения
 room.Damage.FriendlyFire = false;
 room.BreackGraph.OnlyPlayerBlocksDmg = false;

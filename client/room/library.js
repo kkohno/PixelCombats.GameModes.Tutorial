@@ -44,6 +44,28 @@ function InitializeFromMap() {
 }
 InitializeFromMap(); // todo регламентировать последовательность отработки режима и карты. Тут чтото нужно придумать, как бы реализовать четкую последовательность отработки скриптов и загрузки карт, возможно стоит сделать какието модули с выгружаемыми дескрипторами соответствующих функций. этот вопрос стоит обсудить с разработчиками режимов и разработчиками игры
 
+// отработка появления и смерти ботов
+room.Bots.OnNewBot.Add(function (bot) {
+    //bot.Attack = library.NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
+});
+room.Bots.OnBotDeath.Add(function (bot) {
+    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
+    if (room.Bots.Alive.length == 0) ++trigger_index.Value;
+});
+
+// отображение текущего количества ботов
+const bots_timer = room.Timers.GetContext().Get("bots_timer");
+bots_timer.OnTimer.Add(function () {
+    var player = room.Players.All[0];
+    var look = player.Position;
+    look.y += library.PLAYER_HEAD_HEIGHT;
+    for (const bot of room.Bots.All) {
+        bot.LookAt(look);
+    }
+    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
+});
+bots_timer.RestartLoop(1);
+
 // получает все зоны с указанным тэгом, сортировано по имени
 export function get_areas_by_tag_sorted_by_name(tag) {
     var areas = room.AreaService.GetByTag(tag);
@@ -92,6 +114,7 @@ export function configure_bot(bot) {
 // активация триггеров на карте
 trigger_index.OnValue.Add(prop => trigger_set_enable(prop.Value));
 function trigger_set_enable(index) { // активирует триггер указанного индекса, если задать отрицательное число, то деактивирует триггер
+    if (index >= trigger_areas.length) index = -1;
     if (index >= 0) {
         const area = trigger_areas[index];
         players_trigger_view.Color = new basic.Color(1, 1, 0, 0);
