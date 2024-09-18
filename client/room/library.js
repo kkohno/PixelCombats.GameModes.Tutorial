@@ -11,6 +11,8 @@ var bots_configured = 0;
 export const trigger_index = room.Properties.GetContext().Get("trigger_index");
 trigger_index.Value = 0;
 
+const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
+
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
 
@@ -32,7 +34,6 @@ function InitializeFromMap() {
 InitializeFromMap(); // todo регламентировать последовательность отработки режима и карты. Тут чтото нужно придумать, как бы реализовать четкую последовательность отработки скриптов и загрузки карт, возможно стоит сделать какието модули с выгружаемыми дескрипторами соответствующих функций. этот вопрос стоит обсудить с разработчиками режимов и разработчиками игры
 
 // триггер игроков
-const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 players_trigger.OnEnter.Add(function (player, area, trigger) {
     const area = bots_spawns_areas[trigger_index.Value];
     for (const bot of spawn_bots_in_area_all_ranges(area)) {
