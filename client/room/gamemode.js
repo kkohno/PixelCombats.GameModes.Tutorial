@@ -11,6 +11,8 @@ const BOTS_SPAWN_TAG = "bots";
 const BOTS_MULTI_SPAWN_TAG = "multi";
 const BOTS_POOL_SIZE = 10; // размер пула ботов
 
+log.debug('library.trigger_index.Value ' + library.trigger_index.Value);
+
 // инициализация всего что зависит от карты
 var triggers = library.get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
 var bots_spawns = library.get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
@@ -18,7 +20,14 @@ room.Map.OnLoad.Add(InitializeFromMap);
 function InitializeFromMap() {
     triggers = library.get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
     bots_spawns = library.get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
+    for (let i = 0; i < triggers.length; ++i) {
+        triggers[i].Enable = i == library.trigger_index.Value;
+    }
+    for (let i = 0; i < bots_spawns.length; ++i) {
+        bots_spawns[i].Enable = i == library.trigger_index.Value;
+    }
 }
+InitializeFromMap(); // todo регламентировать последовательность отработки режима и карты. Тут чтото нужно придумать, как бы реализовать четкую последовательность отработки скриптов и загрузки карт, возможно стоит сделать какието модули с выгружаемыми дескрипторами соответствующих функций. этот вопрос стоит обсудить с разработчиками режимов и разработчиками игры
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
@@ -39,30 +48,8 @@ trigger.OnEnter.Add(function (player, area, trigger) {
             library.configure_bot(bot);
         }
     }
-    /*var spawns = room.AreaService.GetByTag(BOTS_SPAWN_TAG);
-    var weapon = 1;
-    var count = 0;
-    for (var i = 0; i < spawns.length; ++i) {
-        var range = spawns[i].Ranges.All[0];
-        var spawn_data = { WeaponId: weapon };
-        for (var x = range.Start.x; x < range.End.x; x += 2)
-            for (var z = range.Start.z; z < range.End.z; z += 2) {
-                //spawn_data.WeaponId = weapon++ % 20;
-                spawn_data.Position = new basic.Vector3(x + 0.5, range.Start.y, z + 0.5);
-                spawn_data.LookAt = player.Position;
-                spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
-                const bot = room.Bots.CreateHuman(spawn_data);
-                if (bot !== null) { // если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
-                    bot.Attack = NEW_BOT_IS_ATTACK; // первый способ настройки ботов - сразу по дескриптору нового бота (смотреть чтобы дескриптор небыл null)
-                    bot.WeaponId = weapon++ % 20;
-                }
-
-                ++count;
-            }
-    }*/
     trigger.Enable = false;
     trigger_view.Enable = false;
-    //room.Ui.GetContext().Hint.Value = "Bots count: " + count;
 });
 
 room.Bots.OnNewBot.Add(function (bot) {

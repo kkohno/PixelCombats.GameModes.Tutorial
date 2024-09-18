@@ -4,6 +4,8 @@ import * as basic from 'pixel_combats/basic';
 const NEW_BOT_IS_ATTACK = true; // если истина то новые боты атакуют
 export const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 var bots_configured = 0;
+export const trigger_index = room.Properties.GetContext().Get("trigger_index");
+trigger_index.Value = 0;
 
 // получает все зоны с указанным тэгом, сортировано по имени
 export function get_areas_by_tag_sorted_by_name(tag) {
