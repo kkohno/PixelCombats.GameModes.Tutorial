@@ -9,28 +9,8 @@ import * as library from './library.js';
 const TRIGGERS_TAG = "trigger";
 const BOTS_SPAWN_TAG = "bots";
 const BOTS_MULTI_SPAWN_TAG = "multi";
-const BOTS_POOL_SIZE = 10; // размер пула ботов
 
 log.debug('library.trigger_index.Value ' + library.trigger_index.Value);
-
-// инициализация всего что зависит от карты
-var triggers = library.get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
-var bots_spawns = library.get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
-room.Map.OnLoad.Add(InitializeFromMap);
-function InitializeFromMap() {
-    triggers = library.get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
-    bots_spawns = library.get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
-    for (let i = 0; i < triggers.length; ++i) {
-        triggers[i].Enable = i == library.trigger_index.Value;
-    }
-    for (let i = 0; i < bots_spawns.length; ++i) {
-        bots_spawns[i].Enable = i == library.trigger_index.Value;
-    }
-}
-InitializeFromMap(); // todo регламентировать последовательность отработки режима и карты. Тут чтото нужно придумать, как бы реализовать четкую последовательность отработки скриптов и загрузки карт, возможно стоит сделать какието модули с выгружаемыми дескрипторами соответствующих функций. этот вопрос стоит обсудить с разработчиками режимов и разработчиками игры
-
-// задаем размер пула ботов
-room.Bots.PoolSize = BOTS_POOL_SIZE;
 
 // визуализация триггера
 var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
@@ -39,7 +19,7 @@ trigger_view.Tags = [TRIGGERS_TAG];
 trigger_view.Enable = true;
 
 // зоны спавна
-var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
+/*var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
@@ -50,7 +30,7 @@ trigger.OnEnter.Add(function (player, area, trigger) {
     }
     trigger.Enable = false;
     trigger_view.Enable = false;
-});
+});*/
 
 room.Bots.OnNewBot.Add(function (bot) {
     //bot.Attack = library.NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
