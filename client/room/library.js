@@ -18,8 +18,8 @@ room.Bots.PoolSize = BOTS_POOL_SIZE;
 const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 players_trigger.OnEnter.Add(function (player, area, trigger) {
     for (const spawn of room.AreaService.GetByTag(BOTS_SPAWN_TAG)) {
-        for (const bot of library.spawn_bots_in_area_all_ranges(spawn)) {
-            library.configure_bot(bot);
+        for (const bot of spawn_bots_in_area_all_ranges(spawn)) {
+            configure_bot(bot);
         }
     }
     players_trigger.Enable = false;
