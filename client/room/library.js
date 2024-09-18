@@ -14,36 +14,35 @@ trigger_index.Value = 0;
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
 
+// инициализация всего что зависит от карты
+var trigger_areas = get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
+var bots_spawns_areas = get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
+room.Map.OnLoad.Add(InitializeFromMap);
+function InitializeFromMap() {
+    trigger_areas = get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
+    bots_spawns_areas = get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
+    for (let i = 0; i < trigger_areas.length; ++i) {
+        trigger_areas[i].Enable = i == trigger_index.Value;
+    }
+    for (let i = 0; i < bots_spawns_areas.length; ++i) {
+        bots_spawns_areas[i].Enable = i == trigger_index.Value;
+    }
+    trigger_set_enable(0);
+}
+InitializeFromMap(); // todo регламентировать последовательность отработки режима и карты. Тут чтото нужно придумать, как бы реализовать четкую последовательность отработки скриптов и загрузки карт, возможно стоит сделать какието модули с выгружаемыми дескрипторами соответствующих функций. этот вопрос стоит обсудить с разработчиками режимов и разработчиками игры
+
 // триггер игроков
 const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 players_trigger.OnEnter.Add(function (player, area, trigger) {
-    for (const spawn of room.AreaService.GetByTag(BOTS_SPAWN_TAG)) {
-        for (const bot of spawn_bots_in_area_all_ranges(spawn)) {
-            configure_bot(bot);
-        }
+    const area = bots_spawns_areas[trigger_index.Value];
+    for (const bot of spawn_bots_in_area_all_ranges(area)) {
+        configure_bot(bot);
     }
     players_trigger.Enable = false;
     players_trigger_view.Enable = false;
 });
 // визуализатор триггера игроков
 const players_trigger_view = room.AreaViewService.GetContext().Get("players_trigger_view");
-
-// инициализация всего что зависит от карты
-var trigger_areas = get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
-var bots_spawns = get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
-room.Map.OnLoad.Add(InitializeFromMap);
-function InitializeFromMap() {
-    trigger_areas = get_areas_by_tag_sorted_by_name(TRIGGERS_TAG);
-    bots_spawns = get_areas_by_tag_sorted_by_name(BOTS_SPAWN_TAG);
-    for (let i = 0; i < trigger_areas.length; ++i) {
-        trigger_areas[i].Enable = i == trigger_index.Value;
-    }
-    for (let i = 0; i < bots_spawns.length; ++i) {
-        bots_spawns[i].Enable = i == trigger_index.Value;
-    }
-    trigger_set_enable(0);
-}
-InitializeFromMap(); // todo регламентировать последовательность отработки режима и карты. Тут чтото нужно придумать, как бы реализовать четкую последовательность отработки скриптов и загрузки карт, возможно стоит сделать какието модули с выгружаемыми дескрипторами соответствующих функций. этот вопрос стоит обсудить с разработчиками режимов и разработчиками игры
 
 // получает все зоны с указанным тэгом, сортировано по имени
 export function get_areas_by_tag_sorted_by_name(tag) {
