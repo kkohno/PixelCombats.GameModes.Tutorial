@@ -55,6 +55,9 @@ room.Bots.OnBotDeath.Add(function (bot) {
 
 // отображение текущего количества ботов
 const bots_timer = room.Timers.GetContext().Get("bots_timer");
+function ShowBotsCount() {
+    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
+}
 bots_timer.OnTimer.Add(function () {
     var player = room.Players.All[0];
     var look = player.Position;
@@ -62,7 +65,7 @@ bots_timer.OnTimer.Add(function () {
     for (const bot of room.Bots.All) {
         bot.LookAt(look);
     }
-    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
+    ShowBotsCount();
 });
 bots_timer.RestartLoop(1);
 
@@ -93,6 +96,7 @@ export function spawn_bots_in_area_range(range) {
             const bot = room.Bots.CreateHuman(spawn_data);
             if (bot !== null) bots.push(bot);// если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
         }
+    ShowBotsCount();
     return bots;
 }
 
