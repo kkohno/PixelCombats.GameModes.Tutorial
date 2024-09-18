@@ -2,6 +2,8 @@ import * as room from 'pixel_combats/room';
 import * as basic from 'pixel_combats/basic';
 
 const BOTS_SPAWN_TAG = "bots";
+const TRIGGERS_TAG = "trigger";
+const BOTS_MULTI_SPAWN_TAG = "multi";
 const NEW_BOT_IS_ATTACK = true; // если истина то новые боты атакуют
 const BOTS_POOL_SIZE = 10; // размер пула ботов
 export const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног

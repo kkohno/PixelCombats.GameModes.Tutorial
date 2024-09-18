@@ -6,20 +6,20 @@ import * as basic from 'pixel_combats/basic';
 import * as library from './library.js';
 
 // опции
-const TRIGGERS_TAG = "trigger";
+/*const TRIGGERS_TAG = "trigger";
 const BOTS_SPAWN_TAG = "bots";
-const BOTS_MULTI_SPAWN_TAG = "multi";
+const BOTS_MULTI_SPAWN_TAG = "multi";*/
 
 log.debug('library.trigger_index.Value ' + library.trigger_index.Value);
 
 // визуализация триггера
-var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
+/*var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");
 trigger_view.color = new basic.Color(1, 1, 0, 0);
 trigger_view.Tags = [TRIGGERS_TAG];
 trigger_view.Enable = true;
 
 // зоны спавна
-/*var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
+var trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 trigger.Tags = [TRIGGERS_TAG];
 trigger.Enable = true;
 trigger.OnEnter.Add(function (player, area, trigger) {
