@@ -93,7 +93,7 @@ export function configure_bot(bot) {
 // активация триггеров на карте
 trigger_index.OnValue.Add(prop => trigger_set_enable(prop.Value));
 function trigger_set_enable(index) { // активирует триггер указанного индекса, если задать отрицательное число, то деактивирует триггер
-    if (index > 0) {
+    if (index >= 0) {
         const area = trigger_areas[index];
         players_trigger_view.Color = new basic.Color(1, 1, 0, 0);
         players_trigger_view.Area = area;
