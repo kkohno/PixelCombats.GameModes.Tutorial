@@ -49,7 +49,7 @@ room.Bots.OnNewBot.Add(function (bot) {
     //bot.Attack = library.NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
 });
 room.Bots.OnBotDeath.Add(function (bot) {
-    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
+    ShowBotsCount();
     if (room.Bots.Alive.length == 0) ++trigger_index.Value;
 });
 
