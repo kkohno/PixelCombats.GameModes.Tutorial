@@ -65,7 +65,7 @@ bots_timer.OnTimer.Add(function () {
     for (const bot of room.Bots.All) {
         bot.LookAt(look);
     }
-    ShowBotsCount();
+    //ShowBotsCount();
 });
 bots_timer.RestartLoop(1);
 
