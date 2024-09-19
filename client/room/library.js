@@ -46,7 +46,7 @@ InitializeFromMap(); // todo регламентировать последова
 
 // отработка появления и смерти ботов
 room.Bots.OnNewBot.Add(function (bot) {
-    ShowBotsCount();
+    //ShowBotsCount();
     //bot.Attack = library.NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
 });
 room.Bots.OnBotDeath.Add(function (bot) {
