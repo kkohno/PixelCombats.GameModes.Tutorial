@@ -50,8 +50,13 @@ room.Bots.OnNewBot.Add(function (bot) {
     //bot.Attack = library.NEW_BOT_IS_ATTACK; // это второй способ настройки ботов
 });
 room.Bots.OnBotDeath.Add(function (bot) {
-    ShowBotsCount();
     if (room.Bots.Alive.length == 0) ++trigger_index.Value;
+    if (trigger_index.Value >= bots_spawns_areas.length) {
+        room.Ui.GetContext().Hint.Value = "Обучение завершено!";
+    }
+    else {
+        ShowBotsCount();
+    }
 });
 
 // отображение текущего количества ботов
