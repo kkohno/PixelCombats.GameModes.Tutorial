@@ -149,7 +149,7 @@ export function set_spawn_index(index) {
     set_spawn(trigger_areas[index - 1], trigger_areas[index]);
 }
 export function set_spawn(area, look_area) {
-    const spawns = room.GetContext();
+    const spawns = room.Spawns.GetContext();
     // очистка спавнов
     spawns.CustomSpawnPoints.Clear();
     // задаем спавны
