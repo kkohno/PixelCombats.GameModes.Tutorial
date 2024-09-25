@@ -27,6 +27,7 @@ players_trigger.OnEnter.Add(function (player, area, trigger) {
     }
     players_trigger.Enable = false;
     players_trigger_view.Enable = false;
+    set_spawn_index(prop.Value);
 });
 
 // инициализация всего что зависит от карты
@@ -125,7 +126,6 @@ export function configure_bot(bot) {
 
 // активация триггеров на карте
 trigger_index.OnValue.Add(prop => {
-    set_spawn_index(prop.Value);
     trigger_set_enable(prop.Value);
 });
 function trigger_set_enable(index) { // активирует триггер указанного индекса, если задать отрицательное число, то деактивирует триггер
@@ -147,7 +147,7 @@ function trigger_set_enable(index) { // активирует триггер ук
 
 export function set_spawn_index(index) {
     if (index < 0 || index >= trigger_areas.length) return;
-    set_spawn(trigger_areas[index - 1], trigger_areas[index]);
+    set_spawn(trigger_areas[index], trigger_areas[index + 1]);
 }
 export function set_spawn(area, look_area) {
     const spawns = room.Spawns.GetContext();
