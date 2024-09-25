@@ -1,5 +1,6 @@
 import * as room from 'pixel_combats/room';
 import * as basic from 'pixel_combats/basic';
+const { log } = await import('pixel_combats/debug');
 
 const BOTS_SPAWN_TAG = "bots";
 const TRIGGERS_TAG = "trigger";
