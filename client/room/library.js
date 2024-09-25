@@ -147,22 +147,24 @@ function trigger_set_enable(index) { // активирует триггер ук
 
 export function set_spawn_index(index) {
     if (index < 0 || index >= trigger_areas.length) return;
-    set_spawn(trigger_areas[index], trigger_areas[index + 1]);
+    const apawn_area = trigger_areas[index];
+    const look_area = index == trigger_areas.length - 1 ? bots_spawns_areas[index] : trigger_areas[index + 1];
+    const look_point = look_area.Ranges.GetAveragePosition();
+    set_spawn_area(trigger_areas[index], look_point);
 }
-export function set_spawn(area, look_area) {
+export function set_spawn_area(spawn_area, look_point) {
     const spawns = room.Spawns.GetContext();
     // очистка спавнов
     spawns.CustomSpawnPoints.Clear();
     // задаем спавны
-    const range = area.Ranges.All[0];
+    const range = spawn_area.Ranges.All[0];
     // определяем куда смотреть спавнам
-    const lookPoint = look_area.Ranges.GetAveragePosition();
     var spawnsCount = 0;
     for (var x = range.Start.x; x < range.End.x; x += 2)
         for (var z = range.Start.z; z < range.End.z; z += 2) {
             log.debug('ADD_SPAWN ' + x + '; ' + range.Start.y + '; ' + z);
             spawns.CustomSpawnPoints.Add(x, range.Start.y, z,
-                room.Spawns.GetSpawnRotation(x, z, lookPoint.x, lookPoint.z));
+                room.Spawns.GetSpawnRotation(x, z, look_point.x, look_point.z));
             ++spawnsCount;
             if (spawnsCount > MAX_SPAWNS_BY_AREA) return;
         }
