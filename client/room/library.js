@@ -6,6 +6,7 @@ const TRIGGERS_TAG = "trigger";
 const BOTS_MULTI_SPAWN_TAG = "multi";
 const NEW_BOT_IS_ATTACK = true; // если истина то новые боты атакуют
 const BOTS_POOL_SIZE = 1; // размер пула ботов
+const MAX_SPAWNS_BY_AREA = 20; // максимум спавнов в зоне
 export const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 var bots_configured = 0;
 export const trigger_index = room.Properties.GetContext().Get("trigger_index");
@@ -122,7 +123,10 @@ export function configure_bot(bot) {
 }
 
 // активация триггеров на карте
-trigger_index.OnValue.Add(prop => trigger_set_enable(prop.Value));
+trigger_index.OnValue.Add(prop => {
+    set_spawn_index(prop.Value);
+    trigger_set_enable(prop.Value);
+});
 function trigger_set_enable(index) { // активирует триггер указанного индекса, если задать отрицательное число, то деактивирует триггер
     if (index >= trigger_areas.length) index = -1;
     if (index >= 0) {
@@ -138,4 +142,26 @@ function trigger_set_enable(index) { // активирует триггер ук
         players_trigger_view.Enable = false;
         players_trigger.Enable = false;
     }
+}
+
+export function set_spawn_index(index) {
+    if (index < 0 || index >= trigger_areas.length) return;
+    set_spawn(trigger_areas[index - 1], trigger_areas[index]);
+}
+export function set_spawn(area, look_area) {
+    const spawns = room.GetContext();
+    // очистка спавнов
+    spawns.CustomSpawnPoints.Clear();
+    // задаем спавны
+    const range = area.Ranges.All[0];
+    // определяем куда смотреть спавнам
+    const lookPoint = look_area.Ranges.GetAveragePosition();
+    var spawnsCount = 0;
+    for (var x = range.Start.x; x < range.End.x; x += 2)
+        for (var z = range.Start.z; z < range.End.z; z += 2) {
+            spawns.CustomSpawnPoints.Add(x, range.Start.y, z,
+                room.Spawns.GetSpawnRotation(x, z, lookPoint.x, lookPoint.z));
+            ++spawnsCount;
+            if (spawnsCount > MAX_SPAWNS_BY_AREA) return;
+        }
 }
