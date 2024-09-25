@@ -27,7 +27,7 @@ players_trigger.OnEnter.Add(function (player, area, trigger) {
     }
     players_trigger.Enable = false;
     players_trigger_view.Enable = false;
-    set_spawn_index(prop.Value);
+    set_spawn_index(trigger_index.Value);
 });
 
 // инициализация всего что зависит от карты
