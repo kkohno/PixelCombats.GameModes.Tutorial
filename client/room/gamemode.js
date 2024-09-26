@@ -10,7 +10,7 @@ import * as library from './library.js';
 const BOTS_SPAWN_TAG = "bots";
 const BOTS_MULTI_SPAWN_TAG = "multi";*/
 
-log.debug('library.trigger_index.Value ' + library.trigger_index.Value);
+//log.debug('library.trigger_index.Value ' + library.trigger_index.Value);
 
 // визуализация триггера
 /*var trigger_view = room.AreaViewService.GetContext().Get("trigger_view");

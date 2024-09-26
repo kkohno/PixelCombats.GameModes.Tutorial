@@ -162,7 +162,7 @@ export function set_spawn_area(spawn_area, look_point) {
     var spawnsCount = 0;
     for (var x = range.Start.x; x < range.End.x; x += 2)
         for (var z = range.Start.z; z < range.End.z; z += 2) {
-            log.debug('ADD_SPAWN ' + x + '; ' + range.Start.y + '; ' + z);
+            //log.debug('ADD_SPAWN ' + x + '; ' + range.Start.y + '; ' + z);
             spawns.CustomSpawnPoints.Add(x, range.Start.y, z,
                 room.Spawns.GetSpawnRotation(x, z, look_point.x, look_point.z));
             ++spawnsCount;
