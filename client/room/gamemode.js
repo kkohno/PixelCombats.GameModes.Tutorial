@@ -24,7 +24,7 @@ room.Damage.GetContext().DamageOut.Value = false;
 // параметры игры
 room.Properties.GetContext().GameModeName.Value = "GameModes/EDITOR";
 // создаем команду
-teams.create_team_blue();
+const blue_team = teams.create_team_blue();
 
 // разрешаем вход в команды по запросу
 room.Teams.OnRequestJoinTeam.add_Event(function (player, team) { team.Add(player); });
@@ -40,7 +40,10 @@ peace.set_inventory();
 // моментальный спавн
 room.Spawns.GetContext().RespawnTime.Value = 0;
 room.Damage.OnDeath.Add(function (player) {
-	player.Spawns.Spawn();
+    player.Spawns.Spawn();
 });
 
-room.Map.OnLoad.Add(()=>room.Spawns.GetContext().Spawn());
+room.Map.OnLoad.Add(() => {
+    for (let player of room.Players.All) player.Team = blue_team;
+    room.Spawns.GetContext().Spawn();
+});
