@@ -6,8 +6,9 @@ const BOTS_SPAWN_TAG = "bots";
 const TRIGGERS_TAG = "trigger";
 const BOTS_MULTI_SPAWN_TAG = "multi";
 const NEW_BOT_IS_ATTACK = true; // если истина то новые боты атакуют
-const BOTS_POOL_SIZE = 1; // размер пула ботов
+const BOTS_POOL_SIZE = 10; // размер пула ботов
 const MAX_SPAWNS_BY_AREA = 20; // максимум спавнов в зоне
+const BOTS_SKIN_ID = 10;
 export const PLAYER_HEAD_HEIGHT = 2.35; // высота середины головы игрока от его ног
 var bots_configured = 0;
 export const trigger_index = room.Properties.GetContext().Get("trigger_index");
@@ -103,6 +104,7 @@ export function spawn_bots_in_area_range(range) {
             };
             spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
             const bot = room.Bots.CreateHuman(spawn_data);
+            bot.SkinId=BOTS_SKIN_ID;
             if (bot !== null) bots.push(bot);// если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
         }
     ShowBotsCount();
