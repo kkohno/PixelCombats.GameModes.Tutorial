@@ -57,6 +57,7 @@ room.Bots.OnBotDeath.Add(function (bot) {
     if (room.Bots.Alive.length == 0) ++trigger_index.Value;
     if (trigger_index.Value >= bots_spawns_areas.length) {
         room.Ui.GetContext().Hint.Value = "Обучение завершено!";
+        room.Room.Close();
     }
     else {
         ShowBotsCount();
