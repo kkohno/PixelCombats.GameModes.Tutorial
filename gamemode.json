@@ -1,26 +1,15 @@
 {
-    "Name": "TUTORIAL",
-    "Description": "Обучение игре",
-    "StartClientVersion": 579,
-    "ApiVersion": 2,
-    "MapLists": [
-      {
-        "MapListId": 17929,
-        "Name": "Оф карты для туториала"
-      }
-    ],
-    "Parameters": {
-      "Bool": [
-        {
-          "Name": "RedTeam",
-          "DisplayName": "Teams/Red",
-          "Default": true
-        },
-        {
-          "Name": "BlueTeam",
-          "DisplayName": "Teams/Blue",
-          "Default": true
-        }
-      ]
+  "Name": "TUTORIAL",
+  "Description": "Обучение игре",
+  "StartClientVersion": 579,
+  "ApiVersion": 2,
+  "MapLists": [
+    {
+      "MapListId": 17929,
+      "Name": "Оф карты для туториала"
     }
+  ],
+  "Parameters": {
+    "Bool": []
   }
+}
