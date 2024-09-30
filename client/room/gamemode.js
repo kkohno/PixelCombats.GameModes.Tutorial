@@ -47,6 +47,6 @@ room.Map.OnLoad.Add(() => {
     for (let player of room.Players.All) player.Team = blue_team;
     room.Spawns.GetContext().Spawn();
 });
-foom.Players.OnPlayerConnected.Add((player) => {
+room.Players.OnPlayerConnected.Add((player) => {
     player.Team = blue_team;
 });
