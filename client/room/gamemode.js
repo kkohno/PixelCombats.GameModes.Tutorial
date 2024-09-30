@@ -40,5 +40,5 @@ peace.set_inventory();
 // моментальный спавн
 room.Spawns.GetContext().RespawnTime.Value = 0;
 room.Damage.OnDeath.Add(function (player) {
-	player.Spawn();
+	player.Spawns.Spawn();
 });
