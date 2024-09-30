@@ -42,4 +42,4 @@ room.Spawns.GetContext().RespawnTime.Value = 0;
 room.Damage.OnDeath.Add(function (player) {
 	player.Spawns.Spawn();
 });
-player.Spawns.Spawn();
+Spawns.GetContext().Spawn();
