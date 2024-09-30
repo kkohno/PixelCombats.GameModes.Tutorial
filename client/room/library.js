@@ -100,12 +100,15 @@ export function spawn_bots_in_area_range(range) {
         for (var z = range.Start.z; z < range.End.z; z += 2) {
             const spawn_data = {
                 Position: new basic.Vector3(x + 0.5, range.Start.y, z + 0.5),
-                LookAt: player.Position
+                LookAt: player.Position,
+                //SkinId: BOTS_SKIN_ID
             };
             spawn_data.LookAt.y += PLAYER_HEAD_HEIGHT;
             const bot = room.Bots.CreateHuman(spawn_data);
-            bot.SkinId=BOTS_SKIN_ID;
-            if (bot !== null) bots.push(bot);// если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
+            if (bot !== null) {
+                bot.SkinId = BOTS_SKIN_ID;
+                bots.push(bot);// если не сервер то бот не будет создан, потому ОБЯЗАТЕЛЬНО проверить нет ли тут нуля, иначе код дальше упадет
+            }
         }
     ShowBotsCount();
     return bots;
