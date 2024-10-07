@@ -33,7 +33,7 @@ room.Teams.OnRequestJoinTeam.add_Event(function (player, team) { team.Add(player
 room.Teams.OnPlayerChangeTeam.add_Event(function (player) { player.Spawns.Spawn(); });
 
 // задаем подсказку
-room.Ui.getContext().Hint.Value = "Hint/GoToArea";
+room.Ui.getContext().Hint.Value = "Hint/TutorialGoToArea";
 
 // конфигурация инвентаря
 peace.set_inventory();
