@@ -14,6 +14,8 @@ var bots_configured = 0;
 export const trigger_index = room.Properties.GetContext().Get("trigger_index");
 trigger_index.Value = 0;
 const BOT_WEAPONS = [2, 18, 1, 27, 3, 28, 29, 14, 21, 13, 4, 16, 36, 30, 9, 15, 31, 32, 33, 22, 7, 34, 17, 35];
+const ROOM_CLOSE_TIME = 5;
+const timer = Timers.GetContext().Get("Main");
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
@@ -57,12 +59,16 @@ room.Bots.OnNewBot.Add(function (bot) {
 room.Bots.OnBotDeath.Add(function (bot) {
     if (room.Bots.Alive.length == 0) ++trigger_index.Value;
     if (trigger_index.Value >= bots_spawns_areas.length) {
-        room.Ui.GetContext().Hint.Value = "Обучение завершено!";
-        room.Room.Close();
+        room.Ui.GetContext().Hint.Value = "Hint/TutorialEnd";
+        Ui.GetContext().MainTimerId.Value = timer.Id;
+        mainTimer.Restart(ROOM_CLOSE_TIME);
     }
     else {
         ShowBotsCount();
     }
+});
+timer.OnTimer.Add(function () {
+    room.Room.Close();
 });
 
 // отображение текущего количества ботов
