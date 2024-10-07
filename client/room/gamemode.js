@@ -22,9 +22,10 @@ room.Ui.GetContext().QuadsCount.Value = false;
 room.Damage.GetContext().DamageOut.Value = false;
 
 // параметры игры
-room.Properties.GetContext().GameModeName.Value = "GameModes/EDITOR";
+room.Properties.GetContext().GameModeName.Value = "GameModes/TUTORIAL";
 // создаем команду
 const blue_team = teams.create_team_blue();
+blue_team.Build.BlocksSet.Value = toom.BuildBlocksSet.Blue;
 
 // разрешаем вход в команды по запросу
 room.Teams.OnRequestJoinTeam.add_Event(function (player, team) { team.Add(player); });
