@@ -68,7 +68,10 @@ room.Bots.OnBotDeath.Add(function (bot) {
 // отображение текущего количества ботов
 const bots_timer = room.Timers.GetContext().Get("bots_timer");
 function ShowBotsCount() {
-    room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
+    //room.Ui.GetContext().Hint.Value = "Bots count: " + room.Bots.Alive.length;
+    if (room.Bots.Alive.length == 1) room.Ui.GetContext().Hint.Value = "Hint/AttackTheEnemy";
+    if (room.Bots.Alive.length > 1) room.Ui.GetContext().Hint.Value = "Hint/AttackTheEnemies";
+    if (room.Bots.Alive.length == 0) room.Ui.GetContext().Hint.Value = "Hint/TutorialGoToArea";
 }
 bots_timer.OnTimer.Add(function () {
     var player = room.Players.All[0];
