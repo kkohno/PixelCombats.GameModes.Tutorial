@@ -15,7 +15,7 @@ export const trigger_index = room.Properties.GetContext().Get("trigger_index");
 trigger_index.Value = 0;
 const BOT_WEAPONS = [2, 18, 1, 27, 3, 28, 29, 14, 21, 13, 4, 16, 36, 30, 9, 15, 31, 32, 33, 22, 7, 34, 17, 35];
 const ROOM_CLOSE_TIME = 5;
-const timer = Timers.GetContext().Get("Main");
+const timer = room.Timers.GetContext().Get("Main");
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
