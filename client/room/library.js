@@ -13,6 +13,7 @@ export const PLAYER_HEAD_HEIGHT = 2.35; // высота середины гол�
 var bots_configured = 0;
 export const trigger_index = room.Properties.GetContext().Get("trigger_index");
 trigger_index.Value = 0;
+const BOT_WEAPONS = [2, 18, 1, 27, 3, 28, 29, 14, 21, 12, 13, 4, 16, 36, 30, 9, 15, 31, 32, 33, 22, 7, 34, 17, 35];
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
@@ -126,7 +127,7 @@ export function spawn_bots_in_area_all_ranges(area) {
 
 export function configure_bot(bot) {
     if (bot == null) return;
-    bot.WeaponId = 1 + (bots_configured++ % 19);
+    bot.WeaponId = BOT_WEAPONS[++bots_configured];
     bot.Attack = NEW_BOT_IS_ATTACK; // первый способ настройки ботов - сразу по дескриптору нового бота (смотреть чтобы дескриптор небыл null)
 }
 
