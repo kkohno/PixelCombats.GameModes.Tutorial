@@ -8,7 +8,7 @@ import * as library from './library.js';
 // разрешения
 room.Damage.FriendlyFire = false;
 room.BreackGraph.OnlyPlayerBlocksDmg = false;
-room.BreackGraph.WeakBlocks = false;
+room.BreackGraph.WeakBlocks = true;
 // делаем возможным ломать все блоки
 room.BreackGraph.BreackAll = false;
 // показываем количество квадов
