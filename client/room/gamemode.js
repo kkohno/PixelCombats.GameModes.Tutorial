@@ -8,9 +8,9 @@ import * as library from './library.js';
 // разрешения
 room.Damage.FriendlyFire = false;
 room.BreackGraph.OnlyPlayerBlocksDmg = false;
-room.BreackGraph.WeakBlocks = false;
+room.BreackGraph.WeakBlocks = true;
 // делаем возможным ломать все блоки
-room.BreackGraph.BreackAll = false;
+room.BreackGraph.BreackAll = true;
 // показываем количество квадов
 room.Ui.GetContext().QuadsCount.Value = false;
 // разрешаем все чистые блоки
@@ -33,7 +33,7 @@ room.Teams.OnRequestJoinTeam.add_Event(function (player, team) { team.Add(player
 room.Teams.OnPlayerChangeTeam.add_Event(function (player) { player.Spawns.Spawn(); });
 
 // задаем подсказку
-room.Ui.getContext().Hint.Value = "Hint/TutorialGoToArea";
+room.Ui.getContext().Hint.Value = "Hint/TutorialGoToAreaStart";
 
 // конфигурация инвентаря
 peace.set_inventory();
