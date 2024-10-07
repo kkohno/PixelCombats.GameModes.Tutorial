@@ -25,7 +25,7 @@ room.Damage.GetContext().DamageOut.Value = false;
 room.Properties.GetContext().GameModeName.Value = "GameModes/TUTORIAL";
 // создаем команду
 const blue_team = teams.create_team_blue();
-blue_team.Build.BlocksSet.Value = toom.BuildBlocksSet.Blue;
+blue_team.Build.BlocksSet.Value = room.BuildBlocksSet.Blue;
 
 // разрешаем вход в команды по запросу
 room.Teams.OnRequestJoinTeam.add_Event(function (player, team) { team.Add(player); });
