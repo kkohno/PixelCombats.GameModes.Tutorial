@@ -8,15 +8,15 @@ import * as library from './library.js';
 // разрешения
 room.Damage.FriendlyFire = false;
 room.BreackGraph.OnlyPlayerBlocksDmg = false;
-room.BreackGraph.WeakBlocks = true;
+room.BreackGraph.WeakBlocks = false;
 // делаем возможным ломать все блоки
-room.BreackGraph.BreackAll = true;
+room.BreackGraph.BreackAll = false;
 // показываем количество квадов
-room.Ui.GetContext().QuadsCount.Value = true;
+room.Ui.GetContext().QuadsCount.Value = false;
 // разрешаем все чистые блоки
-room.Build.GetContext().BlocksSet.Value = room.BuildBlocksSet.AllClear;
+//room.Build.GetContext().BlocksSet.Value = room.BuildBlocksSet.AllClear;
 // вкл строительные опции
-peace.set_editor_options();
+//peace.set_editor_options();
 
 // запрет нанесения урона
 room.Damage.GetContext().DamageOut.Value = false;
