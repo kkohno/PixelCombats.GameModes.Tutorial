@@ -61,7 +61,7 @@ room.Bots.OnBotDeath.Add(function (bot) {
     if (trigger_index.Value >= bots_spawns_areas.length) {
         room.Ui.GetContext().Hint.Value = "Hint/TutorialEnd";
         room.Ui.GetContext().MainTimerId.Value = timer.Id;
-        mainTimer.Restart(ROOM_CLOSE_TIME);
+        timer.Restart(ROOM_CLOSE_TIME);
     }
     else {
         ShowBotsCount();
