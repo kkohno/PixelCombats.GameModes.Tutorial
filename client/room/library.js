@@ -127,7 +127,7 @@ export function spawn_bots_in_area_all_ranges(area) {
 
 export function configure_bot(bot) {
     if (bot == null) return;
-    bot.WeaponId = BOT_WEAPONS[++bots_configured];
+    bot.WeaponId = BOT_WEAPONS[bots_configured++ % BOT_WEAPONS.length];
     bot.Attack = NEW_BOT_IS_ATTACK; // первый способ настройки ботов - сразу по дескриптору нового бота (смотреть чтобы дескриптор небыл null)
 }
 
