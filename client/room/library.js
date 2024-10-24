@@ -30,7 +30,7 @@ const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 players_trigger.OnEnter.Add(function (player, area, trigger) {
     if (analytics_enable) room.Analytics.LogEvent("tutorial", 
         new basic.AnalyticsParameter("event_type", "trigger"), 
-        new basic.AnalyticsParameter("value", trigger_index.Value.toString()));
+        new basic.AnalyticsParameter("value", BigInt(trigger_index.Value)));
     const area = bots_spawns_areas[trigger_index.Value];
     for (const bot of spawn_bots_in_area_all_ranges(area)) {
         configure_bot(bot);
