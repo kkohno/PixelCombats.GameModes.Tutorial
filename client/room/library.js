@@ -5,6 +5,7 @@ const { log } = await import('pixel_combats/debug');
 const BOTS_SPAWN_TAG = "bots";
 const TRIGGERS_TAG = "trigger";
 const BOTS_MULTI_SPAWN_TAG = "multi";
+const ANALYTICS_ENABLE = "analytics";
 const NEW_BOT_IS_ATTACK = true; // если истина то новые боты атакуют
 const BOTS_POOL_SIZE = 10; // размер пула ботов
 const MAX_SPAWNS_BY_AREA = 20; // максимум спавнов в зоне
@@ -16,6 +17,8 @@ trigger_index.Value = 0;
 const BOT_WEAPONS = [2, 18, 1, 27, 3, 28, 29, 14, 21, 13, 4, 16, 36, 30, 9, 15, 31, 32, 33, 22, 7, 34, 17, 35];
 const ROOM_CLOSE_TIME = 10;
 const timer = room.Timers.GetContext().Get("Main");
+
+const analytics_enable = room.GameMode.Parameters().GetBool(ANALYTICS_ENABLE);
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
@@ -146,6 +149,9 @@ trigger_index.OnValue.Add(prop => {
 });
 function trigger_set_enable(index) { // активирует триггер указанного индекса, если задать отрицательное число, то деактивирует триггер
     if (index >= trigger_areas.length) index = -1;
+    if (analytics_enable) {
+        room.Analytics.LogEvent("tutorial_trigger_index", new basic.AnalyticsParameter("value", index));
+    }
     if (index >= 0) {
         const area = trigger_areas[index];
         players_trigger_view.Color = new basic.Color(1, 1, 0, 0);
