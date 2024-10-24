@@ -28,7 +28,9 @@ const players_trigger_view = room.AreaViewService.GetContext().Get("players_trig
 // триггер игроков
 const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 players_trigger.OnEnter.Add(function (player, area, trigger) {
-    if (analytics_enable) room.Analytics.LogEvent("tutorial_trigger", new basic.AnalyticsParameter("value", trigger_index.Value));
+    if (analytics_enable) room.Analytics.LogEvent("tutorial", 
+        new basic.AnalyticsParameter("event_type", "trigger"), 
+        new basic.AnalyticsParameter("value", trigger_index.Value.ToString()));
     const area = bots_spawns_areas[trigger_index.Value];
     for (const bot of spawn_bots_in_area_all_ranges(area)) {
         configure_bot(bot);
@@ -72,6 +74,8 @@ room.Bots.OnBotDeath.Add(function (bot) {
     }
 });
 timer.OnTimer.Add(function () {
+    if (analytics_enable) room.Analytics.LogEvent("tutorial", 
+        new basic.AnalyticsParameter("event_type", "close"));
     room.Room.Close();
 });
 
