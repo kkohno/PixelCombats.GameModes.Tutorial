@@ -1,5 +1,5 @@
 {
-  "Name": "TUTORIAL",
+  "Name": "TUTORIAL 2",
   "Description": "Обучение игре",
   "StartClientVersion": 579,
   "ApiVersion": 2,
@@ -10,6 +10,10 @@
     }
   ],
   "Parameters": {
-    "Bool": []
+    "Bool": [{
+      "Name": "analytics",
+      "DisplayName": "analytics",
+      "Default": false
+    }]
   }
 }
