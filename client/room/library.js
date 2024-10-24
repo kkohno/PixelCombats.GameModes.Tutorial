@@ -28,6 +28,7 @@ const players_trigger_view = room.AreaViewService.GetContext().Get("players_trig
 // триггер игроков
 const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 players_trigger.OnEnter.Add(function (player, area, trigger) {
+    if (analytics_enable) room.Analytics.LogEvent("tutorial_trigger", new basic.AnalyticsParameter("value", trigger_index.Value));
     const area = bots_spawns_areas[trigger_index.Value];
     for (const bot of spawn_bots_in_area_all_ranges(area)) {
         configure_bot(bot);
@@ -149,9 +150,6 @@ trigger_index.OnValue.Add(prop => {
 });
 function trigger_set_enable(index) { // активирует триггер указанного индекса, если задать отрицательное число, то деактивирует триггер
     if (index >= trigger_areas.length) index = -1;
-    if (analytics_enable) {
-        room.Analytics.LogEvent("tutorial_trigger_index", new basic.AnalyticsParameter("value", index));
-    }
     if (index >= 0) {
         const area = trigger_areas[index];
         players_trigger_view.Color = new basic.Color(1, 1, 0, 0);
