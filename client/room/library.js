@@ -18,7 +18,7 @@ const BOT_WEAPONS = [2, 18, 1, 27, 3, 28, 29, 14, 21, 13, 4, 16, 36, 30, 9, 15, 
 const ROOM_CLOSE_TIME = 10;
 const timer = room.Timers.GetContext().Get("Main");
 
-const analytics_enable = room.GameMode.Parameters().GetBool(ANALYTICS_ENABLE);
+const analytics_enable = room.GameMode.Parameters.GetBool(ANALYTICS_ENABLE);
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
