@@ -13,7 +13,7 @@
     "Bool": [{
       "Name": "analytics",
       "DisplayName": "analytics",
-      "Default": false
+      "Default": true
     }]
   }
 }
