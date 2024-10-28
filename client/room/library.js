@@ -19,6 +19,7 @@ const ROOM_CLOSE_TIME = 10;
 const timer = room.Timers.GetContext().Get("Main");
 
 const analytics_enable = room.GameMode.Parameters.GetBool(ANALYTICS_ENABLE);
+if (analytics_enable) room.Analytics.LogEvent("tutorial", new basic.AnalyticsParameter("event_type", "start"));
 
 // задаем размер пула ботов
 room.Bots.PoolSize = BOTS_POOL_SIZE;
@@ -28,8 +29,8 @@ const players_trigger_view = room.AreaViewService.GetContext().Get("players_trig
 // триггер игроков
 const players_trigger = room.AreaPlayerTriggerService.Get("players_trigger");
 players_trigger.OnEnter.Add(function (player, area, trigger) {
-    if (analytics_enable) room.Analytics.LogEvent("tutorial", 
-        new basic.AnalyticsParameter("event_type", "trigger"), 
+    if (analytics_enable) room.Analytics.LogEvent("tutorial",
+        new basic.AnalyticsParameter("event_type", "trigger"),
         new basic.AnalyticsParameter("id", BigInt(trigger_index.Value)));
     const area = bots_spawns_areas[trigger_index.Value];
     for (const bot of spawn_bots_in_area_all_ranges(area)) {
@@ -74,7 +75,7 @@ room.Bots.OnBotDeath.Add(function (bot) {
     }
 });
 timer.OnTimer.Add(function () {
-    if (analytics_enable) room.Analytics.LogEvent("tutorial", 
+    if (analytics_enable) room.Analytics.LogEvent("tutorial",
         new basic.AnalyticsParameter("event_type", "close"));
     room.Room.Close();
 });
