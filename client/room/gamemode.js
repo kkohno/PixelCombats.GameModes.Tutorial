@@ -39,18 +39,12 @@ room.Ui.getContext().Hint.Value = "Hint/TutorialGoToAreaStart";
 peace.set_inventory();
 
 // первый предмет
-Inventory.GetContext().TrySetFirstItem({
-    TeamId: blue_team.Id, 
-    Value: [{
-        Id: 4
-    }]
+room.Inventory.TrySetFirstItem({
+    Id: 4
 });
 // второй предмет
-Inventory.GetContext().TrySetFirstItem({
-    TeamId: blue_team.Id, 
-    Value: [{
-        Id: 25
-    }]
+room.Inventory.TrySetFirstItem({
+    Id: 25
 });
 
 // на каждом спавне выдаем игроку нужные предметы
