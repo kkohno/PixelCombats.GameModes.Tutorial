@@ -39,13 +39,13 @@ room.Ui.getContext().Hint.Value = "Hint/TutorialGoToAreaStart";
 peace.set_inventory();
 
 // первый предмет
-room.Inventory.TrySetFirstItem({
+/*room.Inventory.TrySetFirstItem({
     Id: 4
 });
 // второй предмет
 room.Inventory.TrySetFirstItem({
     Id: 25
-});
+});*/
 
 // на каждом спавне выдаем игроку нужные предметы
 // ID 4 и ID 25, полный комплект боезапаса
