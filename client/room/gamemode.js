@@ -40,18 +40,11 @@ peace.set_inventory();
 
 // на каждом спавне выдаем игроку нужные предметы
 room.Spawns.OnSpawn.Add(function (player) {
-    // выдаем пулемет и гранатомет
-/*room.Inventory.GetContext().TrySetFirstItem({
-    Id: 4
-});
-room.Inventory.GetContext().TrySetFirstItem({
-    Id: 25
-});*/
-    // первый предмет
+    // выдаем пулемет
     player.Inventory.TrySetFirstItem({
         Id: 4
     });
-    // второй предмет
+    // выдаем гранатомет
     player.Inventory.TrySetFirstItem({
         Id: 25
     });
