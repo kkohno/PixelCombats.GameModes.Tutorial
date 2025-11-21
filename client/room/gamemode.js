@@ -11,6 +11,7 @@ room.BreackGraph.OnlyPlayerBlocksDmg = false;
 room.BreackGraph.WeakBlocks = false;
 // делаем возможным ломать все блоки
 room.BreackGraph.BreackAll = false;
+room.BreackGraph.WeakBlocks = true;
 // показываем количество квадов
 room.Ui.GetContext().QuadsCount.Value = false;
 // разрешаем все чистые блоки
