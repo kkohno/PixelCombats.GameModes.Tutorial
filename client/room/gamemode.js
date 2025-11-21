@@ -38,31 +38,24 @@ room.Ui.getContext().Hint.Value = "Hint/TutorialGoToAreaStart";
 // конфигурация инвентаря
 peace.set_inventory();
 
-// первый предмет
-/*room.Inventory.TrySetFirstItem({
+// на каждом спавне выдаем игроку нужные предметы
+room.Spawns.OnSpawn.Add(function (player) {
+    // выдаем пулемет и гранатомет
+/*room.Inventory.GetContext().TrySetFirstItem({
     Id: 4
 });
-// второй предмет
-room.Inventory.TrySetFirstItem({
+room.Inventory.GetContext().TrySetFirstItem({
     Id: 25
 });*/
-
-// на каждом спавне выдаем игроку нужные предметы
-// ID 4 и ID 25, полный комплект боезапаса
-/*room.Spawns.OnSpawn.Add(function (player) {
     // первый предмет
-    player.Inventory.TrySetFirstItem([{
-        Id: 4,
-        GetItemType: 0, // Default
-        AmmoCount: 0
-    }]);
+    player.Inventory.TrySetFirstItem({
+        Id: 4
+    });
     // второй предмет
-    player.Inventory.TrySetFirstItem([{
-        Id: 25,
-        GetItemType: 0, // Default
-        AmmoCount: 0
-    }]);
-});*/
+    player.Inventory.TrySetFirstItem({
+        Id: 25
+    });
+});
 
 // моментальный спавн
 room.Spawns.GetContext().RespawnTime.Value = 0;
