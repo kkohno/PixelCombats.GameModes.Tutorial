@@ -177,6 +177,7 @@ export function set_spawn_index(index) {
     const look_area = index == trigger_areas.length - 1 ? bots_spawns_areas[index] : trigger_areas[index + 1];
     const look_point = look_area.Ranges.GetAveragePosition();
     set_spawn_area(trigger_areas[index], look_point);
+    set_weapons_allowed(index);
 }
 export function set_spawn_area(spawn_area, look_point) {
     const spawns = room.Spawns.GetContext();
@@ -194,4 +195,23 @@ export function set_spawn_area(spawn_area, look_point) {
             ++spawnsCount;
             if (spawnsCount > MAX_SPAWNS_BY_AREA) return;
         }
+}
+function set_weapons_allowed(index) {
+    const inventory = room.Inventory.GetContext();
+    switch (index) {
+        case 2:
+            inventory.Main.Value = false;
+            inventory.Secondary.Value = false;
+            inventory.Melee.Value = false;
+            inventory.Explosive.Value = true;
+            inventory.Build.Value = false;
+            break;     
+        default:
+            inventory.Main.Value = true;
+            inventory.Secondary.Value = true;
+            inventory.Melee.Value = true;
+            inventory.Explosive.Value = true;
+            inventory.Build.Value = true;
+            break;
+    }
 }
