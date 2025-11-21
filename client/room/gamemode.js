@@ -39,14 +39,14 @@ room.Ui.getContext().Hint.Value = "Hint/TutorialGoToAreaStart";
 peace.set_inventory();
 
 // первый предмет
-room.Inventory.TrySetFirstItem({
+Inventory.GetContext().TrySetFirstItem({
     TeamId: blue_team.Id, 
     Value: [{
         Id: 4
     }]
 });
 // второй предмет
-room.Inventory.TrySetFirstItem({
+Inventory.GetContext().TrySetFirstItem({
     TeamId: blue_team.Id, 
     Value: [{
         Id: 25
