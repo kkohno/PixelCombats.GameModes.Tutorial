@@ -38,6 +38,38 @@ room.Ui.getContext().Hint.Value = "Hint/TutorialGoToAreaStart";
 // конфигурация инвентаря
 peace.set_inventory();
 
+// первый предмет
+room.Inventory.TrySetFirstItem({
+    TeamId: blue_team.Id, 
+    Value: [{
+        Id: 4
+    }]
+});
+// второй предмет
+room.Inventory.TrySetFirstItem({
+    TeamId: blue_team.Id, 
+    Value: [{
+        Id: 25
+    }]
+});
+
+// на каждом спавне выдаем игроку нужные предметы
+// ID 4 и ID 25, полный комплект боезапаса
+/*room.Spawns.OnSpawn.Add(function (player) {
+    // первый предмет
+    player.Inventory.TrySetFirstItem([{
+        Id: 4,
+        GetItemType: 0, // Default
+        AmmoCount: 0
+    }]);
+    // второй предмет
+    player.Inventory.TrySetFirstItem([{
+        Id: 25,
+        GetItemType: 0, // Default
+        AmmoCount: 0
+    }]);
+});*/
+
 // моментальный спавн
 room.Spawns.GetContext().RespawnTime.Value = 0;
 room.Damage.OnDeath.Add(function (player) {
@@ -45,7 +77,7 @@ room.Damage.OnDeath.Add(function (player) {
 });
 
 room.Map.OnLoad.Add(() => {
-    for (let player of room.Players.All) 
+    for (let player of room.Players.All)
         blue_team.Add(player);
     room.Spawns.GetContext().Spawn();
 });
