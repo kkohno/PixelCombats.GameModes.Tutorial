@@ -91,10 +91,11 @@ function ShowBotsCount() {
 }
 bots_timer.OnTimer.Add(function () {
     var player = room.Players.All[0];
+    if (!player) return;
     var look = player.Position;
     look.y += PLAYER_HEAD_HEIGHT;
     for (const bot of room.Bots.All) {
-        bot.LookAt(look);
+        if (bot.Alive) bot.LookAt(look);
     }
     //ShowBotsCount();
 });
