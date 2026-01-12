@@ -58,10 +58,5 @@ room.Damage.OnDeath.Add(function (player) {
 });
 
 room.Map.OnLoad.Add(() => {
-    for (let player of room.Players.All)
-        blue_team.Add(player);
-    room.Spawns.GetContext().Spawn();
-});
-room.Players.OnPlayerConnected.Add((player) => {
-    blue_team.Add(player);
+    for (let player of room.Players.All) blue_team.Add(player);
 });
